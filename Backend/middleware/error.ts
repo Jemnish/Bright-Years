@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-const ErrorHandler = require('../utils/errorHandler');
-
-module.exports = (err: any, req: Request, res: Response, next: NextFunction) => {
+import { ErrorHandler } from '../utils/errorHandler';
+export const ErrorMiddleware = (err: any, req: Request, res: Response, next: NextFunction) => {
     err.statusCode = err.statusCode || 500;
     err.message = err.message || "Internal Server Error";
 
