@@ -10,6 +10,7 @@ import sendMail from '../utils/sendMail';
 import { accessTokenOption, refreshTokenOption, sendToken } from '../utils/jwt';
 import { redis } from '../utils/redis';
 import { getUserById } from '../services/user.service';
+import cloudinary from 'cloudinary';
 
 // register user 
 interface IRegisterUser {
@@ -306,6 +307,106 @@ export const updateUserInfo = CatchAsyncError(async(req: Request, res: Response,
 
 });
 
+
+// updare user passwords
+interface IUpdatePassword{  
+    oldPassword: string;
+    newPassword: string;
+}
+
+export const updatePassword = CatchAsyncError(async(req: Request, res: Response, next: NextFunction) => {
+    try{
+        const {oldPassword, newPassword} = req.body as IUpdatePassword;
+        const user = await userModel.findById(req.user?._id).select("+password");
+
+        if(!oldPassword || !newPassword){
+            return next(new ErrorHandler("Please enter old and new password", 400));
+        }
+
+
+        if(user?.password === undefined){
+            return next(new ErrorHandler("Invalid user", 400));
+        }
+
+        const isPasswordMatch = await user?.comparePassword(oldPassword);
+
+        if(!isPasswordMatch){
+            return next(new ErrorHandler("Old password is incorrect", 400));
+        }
+
+        user.password = newPassword;
+
+        await user.save();
+
+        await redis.set(req.user?._id as string, JSON.stringify(user));
+
+        res.status(201).json({
+            success: true,
+            user,
+        });
+
+
+    }catch(err:any){
+        return next(new ErrorHandler(err.message, 400));
+    }
+
+});
+
+interface IUpdateProfilePicture{
+    avatar: string;
+}
+
+// Update prfoile picture or avatar
+export const updateProfilePicture = CatchAsyncError(async(req: Request, res: Response, next: NextFunction) => {
+    try{
+        const {avatar}= req.body;
+        
+        const userId = req.user?._id;
+
+        const user = await userModel.findById(userId)
+
+        if(avatar && user){
+            // if we have old avatar then delete it
+            if(user?.avatar?.public_id){
+                // first delete the previous image
+                await cloudinary.v2.uploader.destroy(user?.avatar?.public_id);
+                const myCloud =  await cloudinary.v2.uploader.upload(avatar,
+                    {
+                        folder : "avatars", 
+                        width: 150
+                    },);
+                    user.avatar = {
+                        public_id: myCloud.public_id,
+                        url: myCloud.secure_url,
+                    }
+            }else{
+               const myCloud =  await cloudinary.v2.uploader.upload(avatar,
+                {
+                    folder : "avatars", 
+                    width: 150
+                },);
+                user.avatar = {
+                    public_id: myCloud.public_id,
+                    url: myCloud.secure_url,
+                }
+            }
+
+        }
+
+        await user?.save();
+
+        await redis.set(userId as string, JSON.stringify(user));
+
+        res.status(201).json({
+            success: true,
+            user,
+        });
+
+
+    }catch(err:any){
+        return next(new ErrorHandler(err.message, 400));
+    }
+    });
 
 
 
