@@ -6,6 +6,7 @@ import { ErrorMiddleware } from "./middleware/error";
 import userRouter from "./routes/user.routes";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import courseRouter from "./routes/course.routes";
 
 
 // body parser
@@ -21,6 +22,8 @@ app.use(cors({
 
 // routes
 app.use("/api/v1", userRouter);
+app.use("/api/v1", courseRouter);
+
 
 // testing api
 app.get("/test", (req:Request, res:Response, next:NextFunction) => {

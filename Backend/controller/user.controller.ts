@@ -1,5 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
-import userModel, { IUser } from '../models/userModel';
+import userModel, { IUser } from '../models/user.model';
 import { CatchAsyncError } from '../middleware/catchAsyncError';
 require('dotenv').config();
 import {ErrorHandler} from '../utils/errorHandler';
