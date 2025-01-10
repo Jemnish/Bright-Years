@@ -7,6 +7,8 @@ import userRouter from "./routes/user.routes";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import courseRouter from "./routes/course.routes";
+import OrderRouter from "./routes/order.routes";
+import notificationRoute from "./routes/notification.routes";
 
 
 // body parser
@@ -21,8 +23,8 @@ app.use(cors({
 }));
 
 // routes
-app.use("/api/v1", userRouter);
-app.use("/api/v1", courseRouter);
+app.use("/api/v1", userRouter,courseRouter,OrderRouter,notificationRoute);
+
 
 
 // testing api

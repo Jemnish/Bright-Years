@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "@types/node-cron": "^3.0.11",
     "cloudinary": "^2.5.1",
     "ejs": "^3.1.10",
+    "node-cron": "^3.0.3",
     "nodemailer": "^6.9.16"
   },
   "devDependencies": {

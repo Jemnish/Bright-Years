@@ -12,6 +12,7 @@ import ejs from "ejs";
 import path from "path";
 import sendMail from "../utils/sendMail";
 import { title } from "process";
+import NotificationModel from "../models/notification.model";
 
 // upload course
 export const uploadCourse = CatchAsyncError(
@@ -202,6 +203,12 @@ export const addQuestion = CatchAsyncError(
       // add these questions to our course content
       courseContent.questions.push(newQuestion);
 
+      await NotificationModel.create({
+        user: req.user?._id,
+        title: "New Question Received ",
+        message: `Your question has been added in ${courseContent.title}`,
+      });
+
       // save the updated course
       await course?.save();
 
@@ -263,6 +270,11 @@ export const addAnswer = CatchAsyncError(
 
       if (req.user?._id === question.user._id) {
         // create a new notification
+        await NotificationModel.create({
+          user: req.user?._id,
+          title: "New Answer Received",
+          message: `Your question has been answered in ${courseContent.title}`,
+        });
       } else {
         const data = {
           name: question.user.name,
@@ -383,11 +395,9 @@ export const addReplyToReview = CatchAsyncError(
         (rev: any) => rev._id.toString() === reviewId
       );
 
-
       console.log(reviewId);
       console.log(course?.reviews);
       console.log(review);
- 
 
       if (!review) {
         return next(new ErrorHandler("Review not found", 404));
@@ -398,12 +408,11 @@ export const addReplyToReview = CatchAsyncError(
         comment,
       };
 
-      if(!review.commentReplies) {
+      if (!review.commentReplies) {
         review.commentReplies = [];
       }
 
       review.commentReplies?.push(replyData);
-
 
       await course?.save();
 
