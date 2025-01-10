@@ -97,7 +97,7 @@ export const getSingleCourse = CatchAsyncError(
           "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
         );
 
-        await redis.set(courseId, JSON.stringify(course));
+        await redis.set(courseId, JSON.stringify(course), "EX", 604800);
 
         res.status(200).json({
           success: true,
@@ -456,7 +456,7 @@ export const deleteCourse = CatchAsyncError(async(req: Request, res: Response, n
       success: true,
       message: "Course deleted successfully",
     });
-    
+
   }catch(err:any){
       return next(new ErrorHandler(err.message, 400));
   }

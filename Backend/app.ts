@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import courseRouter from "./routes/course.routes";
 import OrderRouter from "./routes/order.routes";
 import notificationRoute from "./routes/notification.routes";
+import layoutRouter from "./routes/layout.routes";
 
 
 // body parser
@@ -23,7 +24,7 @@ app.use(cors({
 }));
 
 // routes
-app.use("/api/v1", userRouter,courseRouter,OrderRouter,notificationRoute);
+app.use("/api/v1", userRouter,courseRouter,OrderRouter,notificationRoute,layoutRouter);
 
 
 
