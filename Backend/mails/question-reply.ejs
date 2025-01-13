@@ -1,79 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>New Reply Notification</title>
     <style>
+        /* Base Styles */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
             color: #333;
         }
-        .email-container {
-            max-width: 600px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-        .header h1 {
-            font-size: 24px;
+
+        h1, p {
             margin: 0;
-            color: #4CAF50;
         }
-        .content {
-            padding: 20px 0;
+
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fefefe;
+            background-color: #0070f3;
+            margin-bottom: 10px;
         }
-        .content p {
-            margin: 10px 0;
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
         }
+
+        a {
+            color: #0070f3;
+            text-decoration: none;
+        }
+
+        /* Wrapper */
+        .email-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-header {
+            background-color: #0070f3;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .email-body {
+            padding: 24px;
+        }
+
+        /* Button Style */
         .button {
             display: inline-block;
-            padding: 10px 20px;
-            margin: 20px 0;
-            background-color: #4CAF50;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .footer {
+            background-color: #0070f3;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
             text-align: center;
-            font-size: 12px;
-            color: #888;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 4px;
             margin-top: 20px;
-            border-top: 1px solid #ddd;
-            padding-top: 10px;
+        }
+
+        /* Footer */
+        .email-footer {
+            text-align: center;
+            padding: 16px;
+            background-color: #f4f4f9;
+            font-size: 14px;
+            color: #666;
         }
     </style>
 </head>
+
 <body>
-    <div class="email-container">
-        <div class="header">
-            <h1>Bright Years</h1>
+    <div class="email-wrapper">
+        <!-- Header -->
+        <div class="email-header">
+            <h1>New Reply to Your Question</h1>
         </div>
-        <div class="content">
-            <h2>Hello <%= name %>,</h2>
-            <p>A new reply has been added to your question in the video:</p>
-            <p><strong>"<%= title %>"</strong></p>
-            <p>Please visit our website to view the reply and engage further.</p>
-            <p>Thank you for being a valued part of the Bright Years community!</p>
+
+        <!-- Body -->
+        <div class="email-body">
+            <p>Hello <%= name %>,</p>
+            <p>A new reply has been added to your question in the video <strong>"<%= title %>"</strong>.</p>
+            <p>Please log in to our website to view the reply and continue the discussion.</p>
+            
+            
+            <p>Thank you for being a part of our community!</p>
         </div>
-        <div class="footer">
-            <p>© 2025 Bright Years. All rights reserved.</p>
-            <p>This is an automated email, please do not reply.</p>
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <p>If you have any questions, feel free to <a href="mailto:support@brightyears.com">contact support</a>.</p>
+            <p>&copy; 2025 Bright Years. All rights reserved.</p>
         </div>
     </div>
 </body>
+
 </html>

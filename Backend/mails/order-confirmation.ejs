@@ -1,18 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Order Confirmation</title>
+    <title>Bright Years Order Confirmation</title>
     <style>
+        /* Base Styles */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
         }
-        .email-container {
+
+        h1, h4, p {
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0070f3;
+        }
+
+        h4 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #0070f3;
+            text-decoration: none;
+        }
+
+        /* Wrapper */
+        .email-wrapper {
             max-width: 600px;
             margin: 0 auto;
             background-color: #ffffff;
@@ -20,67 +51,115 @@
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .header {
-            background-color: #4caf50;
+
+        .email-header {
+            background-color: #0070f3;
             color: #ffffff;
-            padding: 20px;
             text-align: center;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .content {
             padding: 20px;
-            color: #333333;
         }
-        .content p {
-            margin: 10px 0;
-            line-height: 1.6;
+
+        .email-body {
+            padding: 24px;
         }
-        .order-details {
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 20px 0;
-            background-color: #f9f9f9;
-            padding: 15px;
-            border: 1px solid #e9ecef;
-            border-radius: 5px;
         }
-        .order-details h2 {
-            margin-top: 0;
-        }
-        .footer {
-            background-color: #f1f1f1;
-            text-align: center;
+
+        table th, table td {
+            text-align: left;
             padding: 10px;
-            font-size: 14px;
-            color: #666666;
+            border-bottom: 1px solid #ddd;
         }
-        .footer a {
-            color: #4caf50;
-            text-decoration: none;
+
+        table th {
+            background-color: #f4f4f9;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        table td {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Footer */
+        .email-footer {
+            text-align: center;
+            padding: 16px;
+            background-color: #f4f4f9;
+            font-size: 14px;
+            color: #666;
         }
     </style>
 </head>
+
 <body>
-    <div class="email-container">
-        <div class="header">
-            <h1>Order Confirmation</h1>
+    <div class="email-wrapper">
+        <!-- Header -->
+        <div class="email-header">
+            <h1 >Your Bright Years Order is Confirmed</h1>
         </div>
-        <div class="content">
-            <p>Thank you for your order on <b>Bright Years</b>. Your order has been confirmed. Below are the details of your order:</p>
-            <div class="order-details">
-                <h2>Order Details</h2>
-                <p><strong>Order Name:</strong> <%= order.name %></p>
-                <p><strong>Order ID:</strong> <%= order._id %></p>
-                <p><strong>Date:</strong> <%= order.date %></p>
-                <p><strong>Total Price:</strong> $<%= order.price %></p>
-            </div>
-            <p>If you have any questions or concerns about your order, feel free to contact us.</p>
-            <p>We hope you enjoy your experience with Bright Years!</p>
+
+        <!-- Body -->
+        <div class="email-body">
+            <p>And we're just as excited as you are!</p>
+
+            <h4>Here’s what you ordered:</h4>
+
+            <!-- Order Info -->
+            <table>
+                <tr>
+                    <td><strong>Order #:</strong></td>
+                    <td><%= order._id %></td>
+                </tr>
+                <tr>
+                    <td><strong>Order Date:</strong></td>
+                    <td><%= order.date %></td>
+                </tr>
+            </table>
+
+            <!-- Order Details -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><%= order.name %></td>
+                        <td>1</td>
+                        <td>$<%= order.price %></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Pricing Summary -->
+            <table>
+                <tr>
+                    <td><strong>Subtotal:</strong></td>
+                    <td>$<%= order.price %></td>
+                </tr>
+                <tr>
+                    <td><strong>Total:</strong></td>
+                    <td>$<%= order.price %></td>
+                </tr>
+            </table>
         </div>
-        <div class="footer">
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <p>Need help with your order? <a href="mailto:support@brightyears.com">Contact Support</a></p>
             <p>&copy; 2025 Bright Years. All rights reserved.</p>
         </div>
     </div>
 </body>
+
 </html>

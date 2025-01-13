@@ -1,28 +1,28 @@
-import mongoose,{Document,Model,Schema} from "mongoose";
+import mongoose, { Document, Model, Schema } from "mongoose";
 
-export interface INotification extends Document{
-    title: string,
-    message: string,
-    status: string,
-    userId: string,
+export interface INotification extends Document {
+    title: string;
+    message: string;
+    status: string;
+    userId: string;
 }
 
-const notificationSchema = new Schema<INotification>({
-    title:{
+const notificatioinSchema = new Schema<INotification>({
+    title: {
         type: String,
         required: true
     },
-    message:{
+    message: {
         type: String,
         required: true
     },
-    status:{
+    status: {
         type: String,
-        required: true,
-        default: "unread"
-    }, 
-},{timestamps:true});
+        required: true
+        , default: "unread"
+    },
+}, { timestamps: true })
 
-const NotificationModel: Model<INotification> = mongoose.model('Notification',notificationSchema);
+const NotificationModel: Model<INotification> = mongoose.model('Notification', notificatioinSchema)
 
-export default NotificationModel;
+export default NotificationModel

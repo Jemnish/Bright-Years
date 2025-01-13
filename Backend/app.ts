@@ -1,49 +1,64 @@
 require("dotenv").config();
-import express, { Request, Response, NextFunction } from "express";
+import express, { NextFunction, Request, Response } from "express";
 export const app = express();
-
-import { ErrorMiddleware } from "./middleware/error";
-import userRouter from "./routes/user.routes";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import courseRouter from "./routes/course.routes";
-import OrderRouter from "./routes/order.routes";
-import notificationRoute from "./routes/notification.routes";
-import layoutRouter from "./routes/layout.routes";
-
+import { ErrorMidleware } from "./middleware/error";
+import userRouter from "./routes/user.route";
+import courseRouter from "./routes/course.route";
+import orderRouter from "./routes/order.route";
+import notificationRoute from "./routes/notification.route";
+import layoutRouter from "./routes/layout.route";
+import { rateLimit } from "express-rate-limit";
 
 // body parser
-app.use(express.json({limit: "50mb"}));
+app.use(express.json({ limit: "50mb" }));
 
 // cookie parser
 app.use(cookieParser());
 
+// cors => cors origin resource sharing
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 
-app.use(cors({
-    origin: process.env.ORIGIN,
-}));
+// api request limit
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+});
 
-// routes
-app.use("/api/v1", userRouter,courseRouter,OrderRouter,notificationRoute,layoutRouter);
-
-
+// routers
+app.use(
+  "/api/v1",
+  userRouter,
+  courseRouter,
+  orderRouter,
+  notificationRoute,
+  layoutRouter
+);
 
 // testing api
-app.get("/test", (req:Request, res:Response, next:NextFunction) => {
-    res.status(200).json({
-        success: true, 
-        message: "API is working"
-    })
+app.get("/test", (req: Request, res: Response, next: NextFunction) => {
+  res.status(200).json({
+    success: true,
+    message: "API is working",
+  });
 });
 
-
-// unkonwn route
-app.all("*", (req:Request, res:Response, next:NextFunction) => {
-    const err = new Error(`Can't find ${req.originalUrl} on this server`) as any;
-    err.statusCode = 404;
-    next(err);
+// unknown route
+app.all("*", (req: Request, res: Response, next: NextFunction) => {
+  const err = new Error(`Router ${req.originalUrl} not found`) as any;
+  err.statusCode = 404;
+  next(err);
 });
 
+// midleware call
+app.use(limiter);
 
-app.use(ErrorMiddleware);
-
+app.use(ErrorMidleware);

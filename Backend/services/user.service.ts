@@ -3,33 +3,34 @@ import { redis } from "../utils/redis";
 import userModel from "../models/user.model";
 
 // get user by id
-export const getUserById = async(id: string, res: Response) => {
-    const userJson = await redis.get(id);
-    if(userJson){
+export const getUserById = async (id: string, res: Response) => {
+    const userJson = await redis.get(id)
+
+    if (userJson) {
+        const user = JSON.parse(userJson)
         res.status(201).json({
             success: true,
-            user: JSON.parse(userJson),
-        });
+            user,
+        })
     }
 }
 
-// get all users
+// Get all users
 export const getAllUsersService = async (res: Response) => {
-    const users = await userModel.find().sort({createdAt: -1});
+    const users = await userModel.find().sort({ createAt: -1 })
 
     res.status(201).json({
         success: true,
-        users
-    });
+        users,
+    })
 }
 
-// update user role
-export const updateUserRoleService = async (id: string, role: string, res: Response) => {
-    const user = await userModel.findByIdAndUpdate(id,{role}, {new: true});
+//update user role 
+export const updatetUserRoleService = async (res: Response, id: string, role: string) => {
+    const user = await userModel.findByIdAndUpdate(id, { role }, { new: true })
 
     res.status(201).json({
         success: true,
-        user
-    });
-    
+        user,
+    })
 }
