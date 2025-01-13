@@ -61,6 +61,7 @@ const How = (props: Props) => {
             Teachers can identify gaps in their students’ understanding, tailor
             instruction, and meet the needs of every student.
           </p>
+          <br />
         </div>
       </div>
     </div>

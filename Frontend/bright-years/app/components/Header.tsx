@@ -31,7 +31,6 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const [active, setActive] = useState(false);
   const [activeImg, setActiveImg] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
-  // const { user } = useSelector((state: any) => state.auth);
   const {
     data: userData,
     isLoading,

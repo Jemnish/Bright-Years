@@ -4,6 +4,7 @@ import Heading from "../utils/Heading";
 import Header from "../components/Header";
 import About from "./About";
 import Footer from "../components/Footer";
+import How from "../components/How/How";
 
 type Props = {};
 
@@ -15,9 +16,9 @@ const Page = (props: Props) => {
   return (
     <div>
       <Heading
-        title="About Us - ELearning"
-        description="ELearning is a learning management system for helping programmesr."
-        keywords="programming, mern"
+        title="About Us - Bright Years"
+        description="Bright Years is an elderlearnig platform that supports lifelong learning."
+        keywords="Bright Years, eLearning, Elderlearning, Lifelong learning"
       />
       <Header
         open={open}
@@ -27,6 +28,7 @@ const Page = (props: Props) => {
         route={route}
       />
       <About />
+      <How />
       <Footer />
     </div>
   );

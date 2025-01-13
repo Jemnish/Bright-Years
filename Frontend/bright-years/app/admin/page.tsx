@@ -10,9 +10,9 @@ const page = (props: Props) => {
     <div>
       <AdminProtected>
         <Heading
-          title="LMS - Admin"
-          description="LMS is a platform for students to learn and get help from teachers"
-          keywords="Programming, MERN, Redux, Machine Learning"
+          title="Bright Years - Admin"
+          description="Bright Years is an elderlearnig platform that supports lifelong learning."
+          keywords="Bright Years, eLearning, Elderlearning, Lifelong learning"
         />
         <div className="flex h-min-screen">
           <div className="1500px:w-[16%] w-1/5">

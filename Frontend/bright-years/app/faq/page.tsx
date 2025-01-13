@@ -9,15 +9,15 @@ type Props = {};
 
 const Page = (props: Props) => {
   const [open, setOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState(4);
+  const [activeItem, setActiveItem] = useState(3);
   const [route, setRoute] = useState("Login");
 
   return (
     <div className="min-h-screen">
       <Heading
-        title="Policy - ELearning"
-        description="ELearning is a learning management system for helping programmesr."
-        keywords="programming, mern"
+        title="FAQ - Bright Years"
+        description="Bright Years is an elderlearnig platform that supports lifelong learning."
+        keywords="Bright Years, eLearning, Elderlearning, Lifelong learning"
       />
       <Header
         open={open}

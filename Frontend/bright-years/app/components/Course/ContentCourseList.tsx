@@ -14,10 +14,7 @@ const ContentCourseList = (props: Props) => {
     new Set<string>()
   );
 
-  //find unique video sections
-  // const videoSections: string[] = [
-  //   ...new Set<string>(props.data?.map((item: any) => item.videoSection)),
-  // ];
+
   const videoSections: string[] = [];
   props.data?.forEach((item: any) => {
     if (item.videoSection && !videoSections.includes(item.videoSection)) {
