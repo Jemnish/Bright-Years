@@ -70,7 +70,7 @@ const CourseData: FC<Props> = ({
             type="text"
             key={index}
             name="benefits"
-            placeholder="You will be able to build a full stack LMS Platform"
+            placeholder="You will be able to cook delicious food"
             required
             className={`${styles.input} my-2`}
             value={benefit.title}
@@ -93,7 +93,7 @@ const CourseData: FC<Props> = ({
             type="text"
             key={index}
             name="prerequisites"
-            placeholder="You need basic knowledge of MERN stack"
+            placeholder="You prior knowledge of cooking required"
             required
             className={`${styles.input} my-2`}
             value={prerequisite.title}

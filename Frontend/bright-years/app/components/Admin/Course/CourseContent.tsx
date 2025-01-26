@@ -215,7 +215,7 @@ const CourseContent: FC<Props> = ({
                       <label className={styles.label}>Video Title</label>
                       <input
                         type="text"
-                        placeholder="Project Plan..."
+                        placeholder="How to .....?"
                         className={`${styles.input}`}
                         value={item.title}
                         onChange={(e) => {
@@ -232,7 +232,7 @@ const CourseContent: FC<Props> = ({
                       <label className={styles.label}>Video Url</label>
                       <input
                         type="text"
-                        placeholder="https://"
+                        placeholder="link to vdocypher id"
                         className={`${styles.input}`}
                         value={item.videoUrl}
                         onChange={(e) => {
@@ -269,7 +269,7 @@ const CourseContent: FC<Props> = ({
                       <textarea
                         rows={8}
                         cols={30}
-                        placeholder="adjflsajfd..."
+                        placeholder="In this course..."
                         className={`${styles.input} !h-min py-2`}
                         value={item.description}
                         onChange={(e) => {
@@ -304,7 +304,7 @@ const CourseContent: FC<Props> = ({
                         </div>
                         <input
                           type="text"
-                          placeholder="Source Code... (Link title)"
+                          placeholder="Title... (Link name)"
                           className={`${styles.input}`}
                           value={link.title}
                           onChange={(e) => {
@@ -328,7 +328,7 @@ const CourseContent: FC<Props> = ({
                         />
                         <input
                           type="url"
-                          placeholder="Source Code... (Link url)"
+                          placeholder="https://www.example.com"
                           className={`${styles.input}`}
                           value={link.url}
                           onChange={(e) => {
