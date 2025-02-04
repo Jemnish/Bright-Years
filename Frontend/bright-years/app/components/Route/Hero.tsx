@@ -16,7 +16,6 @@ const Hero: FC<Props> = () => {
   const { data, isLoading } = useGetHeroDataQuery("Banner", {
     refetchOnMountOrArgChange: true,
   });
-  const [search, setSearch] = useState("");
 
   useEffect(() => {
     if (data) {
@@ -53,20 +52,6 @@ const Hero: FC<Props> = () => {
             <p className="text-sm md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-md">
               {subTitle}
             </p>
-            <div className="relative flex items-center w-full max-w-sm">
-              <input
-                type="text"
-                placeholder="Search Courses..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-l-md dark:border-gray-700 dark:bg-gray-800 dark:placeholder-gray-400 dark:text-white"
-              />
-              <Link href="/courses">
-                <button className="px-4 py-3 bg-blue-500 text-white rounded-r-md hover:bg-blue-600 transition">
-                  <BiSearch size={20} />
-                </button>
-              </Link>
-            </div>
           </div>
         </div>
       )}

@@ -1,3 +1,6 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import Loader from "@/app/components/Loader";
 import EditFaq from "@/app/components/Admin/Customization/EditFaq";
 import AdminSidebar from "@/app/components/Admin/sidebar/AdminSidebar";
 import DashboardHero from "@/app/components/Admin/sidebar/DashboardHero";
@@ -6,6 +9,13 @@ import Heading from "@/app/utils/Heading";
 type Props = {};
 
 const page = (props: Props) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
   return (
     <div>
       <Heading
@@ -17,10 +27,14 @@ const page = (props: Props) => {
         <div className="1500px:w-[16%] w-1/5">
           <AdminSidebar />
         </div>
-        <div className="w-[85%]">
-          <DashboardHero />
-          <EditFaq />
-        </div>
+        {isLoading ? (
+          <Loader /> // Show the loader while loading
+        ) : (
+          <div className="w-[85%]">
+            <DashboardHero />
+            <EditFaq />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -11,10 +11,10 @@ const FAQ = (props: Props) => {
   const [questions, setQuestions] = useState<any[]>([]);
 
   useEffect(() => {
-    if (data?.layout?.faq) { // Safely check for data and its structure
+    if (data?.layout?.faq) { 
       setQuestions(data.layout.faq);
     } else {
-      setQuestions([]); // Handle the case where data.layout.faq is unavailable
+      setQuestions([]); 
     }
   }, [data]);
 

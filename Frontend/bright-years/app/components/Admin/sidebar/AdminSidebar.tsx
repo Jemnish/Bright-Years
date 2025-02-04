@@ -26,7 +26,6 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import { boolean } from "yup";
 
 interface itemProps {
   title: string;
@@ -53,19 +52,42 @@ const AdminSidebar = () => {
   const { user } = useSelector((state: any) => state.auth);
   const [logout, setLogout] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState('Dashboard');
+  const [selected, setSelected] = useState("Dashboard");
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  useEffect(() => {
+    // Update the selected state based on the current page (pathname)
+    const path = window.location.pathname;
+
+    if (path.includes("/admin/users")) {
+      setSelected("Users");
+    } else if (path.includes("/admin/invoices")) {
+      setSelected("Invoices");
+    } else if (path.includes("/admin/create-course")) {
+      setSelected("Create Course");
+    } else if (path.includes("/admin/courses")) {
+      setSelected("Live Courses");
+    } else if (path.includes("/admin/faq")) {
+      setSelected("FAQ");
+    } else if (path.includes("/admin/categories")) {
+      setSelected("Categories");
+    } else {
+      setSelected("Dashboard");
+    }
+  }, [mounted]);
 
   const logoutHandler = () => {
     setLogout(true);
   };
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <Box
@@ -190,7 +212,6 @@ const AdminSidebar = () => {
               icon={<GroupIcon />}
               selected={selected}
               setSelected={setSelected}
-              
             />
             <Item
               title="Invoices"

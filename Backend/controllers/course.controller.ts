@@ -37,6 +37,7 @@ export const uploadCourse = CatchAsyncError(
   }
 );
 
+
 /**
  * edit course
  */
