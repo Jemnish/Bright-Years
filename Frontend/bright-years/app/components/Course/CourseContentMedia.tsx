@@ -275,15 +275,15 @@ const CourseContentMedia = ({
         </p>
       )}
       {activeBar === 1 && (
-        <div>
+        <div className="max-h-[300px]  overflow-y-auto">
           {data[activeVideo]?.links.map((item: any, index: number) => (
             <div key={index} className="mb-5">
-              <h2 className="800px:text-[20px] 800px:inline-block dark:text-white text-black">
+              <h2 className="300px:text-[20px] 300px:inline-block dark:text-white text-black">
                 {item.title && item.title + " :"}
               </h2>
               <a
                 href={item.url}
-                className="inline-block text-[#4395c4] 800px:text-[20px] 800px:pl-2"
+                className="inline-block text-[#4395c4] 300px:text-[20px] 300px:pl-2"
               >
                 {item.url}
               </a>
@@ -291,6 +291,7 @@ const CourseContentMedia = ({
           ))}
         </div>
       )}
+
       {activeBar === 2 && (
         <>
           <div className="flex w-full">
@@ -306,10 +307,10 @@ const CourseContentMedia = ({
               onChange={(e) => setQuestion(e.target.value)}
               cols={40}
               rows={5}
-              placeholder="Wriete your question..."
+              placeholder="Write your question..."
               name=""
               id=""
-              className="outline-none bg-transparent ml-3 border dark:border-[#ffffff57] 800px:w-full p-2 rounded w-[90%] 800px:text-[18px] font-Poppins"
+              className="outline-none bg-transparent ml-3 border dark:border-[#ffffff57] 800px:w-full p-2 rounded w-[90%] 800px:text-[18px] font-Poppins dark:text-white text-black"
             ></textarea>
           </div>
           <div className="w-full flex justify-end">
@@ -387,10 +388,10 @@ const CourseContentMedia = ({
                     onChange={(e) => setReview(e.target.value)}
                     cols={40}
                     rows={5}
-                    placeholder="Wriete your question..."
+                    placeholder="Write your question..."
                     name=""
                     id=""
-                    className="outline-none bg-transparent ml-3 border border-[#ffffff57] 800px:w-full p-2 rounded w-[90%] 800px:text-[18px] font-Poppins"
+                    className="outline-none bg-transparent ml-3 border dark:border-[#ffffff57] 800px:w-full p-2 rounded w-[90%] 800px:text-[18px] font-Poppins dark:text-white text-black"
                   ></textarea>
                 </div>
               </div>

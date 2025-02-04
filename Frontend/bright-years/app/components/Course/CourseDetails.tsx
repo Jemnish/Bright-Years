@@ -150,7 +150,7 @@ const CourseDetails = ({
                         : data?.ratings.toFixed(2)}{" "}
                     </h5>
                   </div>
-                  <p className="pl-2">{` (${data?.reviews?.length} Review)`}</p>
+                  <p className="pl-2 text-black dark:text-white">{` (${data?.reviews?.length} Review)`}</p>
                 </div>
                 <br />
                 {(data?.reviews && [...data.reviews].reverse()).map(
@@ -208,12 +208,16 @@ const CourseDetails = ({
                           </div>
                           <div className="pl-2">
                             <div className="flex items-center">
-                              <h5 className="text-[20px] text-black dark:text-white">{i.user.name}</h5>
+                              <h5 className="text-[20px] text-black dark:text-white">
+                                {i.user.name}
+                              </h5>
                               {i.user.role === "admin" && (
                                 <VscVerifiedFilled className="text-[#0095f6] ml-2 text-[20px]" />
                               )}
                             </div>
-                            <p className="text-black dark:text-white">{i.comment}</p>
+                            <p className="text-black dark:text-white">
+                              {i.comment}
+                            </p>
                             <small className="text-[#ffffff83] text-black dark:text-white">
                               {format(i.createdAt)}
                             </small>
@@ -256,16 +260,7 @@ const CourseDetails = ({
               </div>
               <br />
               <p className="pb-1 text-black dark:text-white">
-                * Source doce included
-              </p>
-              <p className="pb-1 text-black dark:text-white">
-                * Source doce included
-              </p>
-              <p className="pb-1 text-black dark:text-white">
-                * Source doce included
-              </p>
-              <p className="pb-1 800px:pb-1 text-black dark:text-white">
-                * Source doce included
+                * Source code included
               </p>
             </div>
           </div>

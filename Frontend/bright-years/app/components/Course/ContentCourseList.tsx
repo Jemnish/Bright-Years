@@ -14,7 +14,6 @@ const ContentCourseList = (props: Props) => {
     new Set<string>()
   );
 
-
   const videoSections: string[] = [];
   props.data?.forEach((item: any) => {
     if (item.videoSection && !videoSections.includes(item.videoSection)) {
@@ -113,11 +112,11 @@ const ContentCourseList = (props: Props) => {
                             color="#1cdada"
                           />
                         </div>
-                        <h1 className="text-[18px] inline-block break-words text-black dark:text-white">
+                        <h1 className="text-[18px] inline-block break-words text-red-400 dark:text-white">
                           {item.title}
                         </h1>
                       </div>
-                      <h5 className="pl-8 text-black dark:text-white">
+                      <h5 className="pl-8 text-red-400 dark:text-white">
                         {item.videoLength > 60
                           ? contentLength.toFixed(2)
                           : item.videoLength}{" "}

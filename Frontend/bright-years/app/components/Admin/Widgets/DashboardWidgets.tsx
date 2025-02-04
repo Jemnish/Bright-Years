@@ -5,7 +5,9 @@ const DashboardWidgets: React.FC = () => {
   return (
     <div className="mt-10 min-h-screen text-center px-4">
       {/* Admin Page Header */}
-      <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
+      <h1 className="text-3xl font-bold  text-gray-600 mb-6 ">
+        Admin Dashboard
+      </h1>
       <p className="text-lg text-gray-600 mb-10">Welcome to the Admin Page.</p>
 
       {/* Placeholder for Images */}
