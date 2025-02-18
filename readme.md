@@ -27,10 +27,6 @@ With Bright Years, age is just a number, and growth is a lifelong journey.
 - **Frontend**: React, Tailwind CSS
 - **Backend**: Node.js, Express
 - **Database**: MongoDB
-- **Image Optimization**: Next.js Image Component
-- **Authentication**: OAuth2, JWT
-- **Hosting**: Vercel / AWS
-
 ---
 
 ## Getting Started
